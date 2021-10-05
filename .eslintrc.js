@@ -8,7 +8,6 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
-    'prettier',
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -22,7 +21,6 @@ module.exports = {
   ],
   rules: {
     'no-unused-vars': 'warn',
-    'no-process-exit': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'max-len': ['error', 120],
     'max-lines': ['warn', 400],
