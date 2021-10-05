@@ -8,9 +8,11 @@
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--lightgray);
 }
 
 :root {
   --orange: rgb(255, 102, 0);
   --lightgray: rgb(246, 239, 239);
+  --gray: rgb(196, 189, 189);
 }
