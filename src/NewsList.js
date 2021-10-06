@@ -37,16 +37,16 @@ const SkeletonNews = () => (
 );
 
 const NewsListComponent = ({
-  newsList, isFirstPage, pageNumber, setPageNumber,
+  newsList, pageNumber, setPageNumber,
 }) => (
   <NewsList>
     {newsList.length === 0 ? (
       <SkeletonNews />
-    ) : newsList.map((news) => <p key={news}>a news</p>)}
+    ) : newsList.map((news) => <p key={news.id}>{news.title}</p>)}
     <ButtonGroup variant="text" size="small" color="inherit" style={{ padding: '1.5rem' }}>
       <Button
-        style={isFirstPage ? buttonDisabledStyle : buttonStyle}
-        onClick={isFirstPage ? () => { } : () => setPageNumber(pageNumber - 1)}
+        style={pageNumber === 1 ? buttonDisabledStyle : buttonStyle}
+        onClick={pageNumber === 1 ? () => { } : () => setPageNumber(pageNumber - 1)}
       >
         Prev
       </Button>
@@ -56,15 +56,13 @@ const NewsListComponent = ({
 );
 
 NewsListComponent.propTypes = {
-  newsList: PropTypes.arrayOf(PropTypes.string),
-  isFirstPage: PropTypes.bool,
+  newsList: PropTypes.arrayOf(PropTypes.shape),
   pageNumber: PropTypes.number,
   setPageNumber: PropTypes.func,
 };
 
 NewsListComponent.defaultProps = {
   newsList: [],
-  isFirstPage: true,
   pageNumber: 1,
   setPageNumber() { },
 };
