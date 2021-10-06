@@ -11,6 +11,7 @@ const App = () => {
   const [refresh, setRefresh] = useState(false);
 
   const getTopNews = () => {
+    setNewsList([]);
     const url = 'https://hacker-news.firebaseio.com/v0/topstories.json';
     return axios.get(url).then((res) => {
       setIdList(res.data);
@@ -31,7 +32,7 @@ const App = () => {
 
   useEffect(() => {
     getTopNews().then((list) => { getNewsDetails(list); });
-    setInterval(() => setRefresh(!refresh), 30000);
+    setTimeout(() => setRefresh(!refresh), 30000);
   }, [refresh]);
   useEffect(() => { getNewsDetails(); }, [pageNumber]);
 
