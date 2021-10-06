@@ -7,9 +7,9 @@ export const getNewsIndexes = (pageNumber) => {
 
 export const getNewsNumber = (pageNumber, index) => (pageNumber - 1) * 20 + index + 1;
 
-export const getSource = (url) => url.replace('www.', '').split('/')[2];
+export const getSource = (url = '') => url.replace('www.', '').split('/')[2] || 'no link';
 
-export const getTime = (time, now = moment()) => {
+export const getTime = (time = 0, now = moment()) => {
   let unit = 'minutes';
   let timeDiff = now.diff(moment(time * 1000), 'minutes');
   if (timeDiff >= 1440) {
