@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { getSource } from './util';
+import { getSource, getTime } from './util';
 
 const NewsRow = styled.div`
   padding: 1rem;
@@ -10,8 +10,11 @@ const NewsRow = styled.div`
   &:hover{
     background-color: seashell;
   }
+  @media (max-width: 414px){
+    padding: 0.5rem;
+  }
 `;
-
+const GraySpan = styled.span`color: var(--gray)`;
 const NewsTitle = styled.a`
   font-size: 1rem;
   font-weight: 400;
@@ -19,7 +22,16 @@ const NewsTitle = styled.a`
     font-size: 0.75rem;
   }
 `;
-const GraySpan = styled.span`color: var(--gray)`;
+const NewsSubtitle = styled.p`
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  font-size: 0.625rem;
+  @media (max-width: 414px){
+    padding: 0.5rem 0 0.25rem 0.25rem;
+  }
+  @media (max-width: 360px){
+    font-size: 0.5rem;
+  }
+`;
 
 const NewsDetails = ({ news, index }) => (
   <NewsRow>
@@ -28,6 +40,13 @@ const NewsDetails = ({ news, index }) => (
       {news.title}
       <GraySpan>{` (${getSource(news.url)})`}</GraySpan>
     </NewsTitle>
+    <NewsSubtitle>
+      {`${news.score} points `}
+      <GraySpan>by</GraySpan>
+      {` ${news.by} `}
+      <GraySpan>{`${getTime(news.time)} ago | `}</GraySpan>
+      {`${news.kids?.length || 0} comment${news.kids?.length > 0 ? 's' : ''}`}
+    </NewsSubtitle>
   </NewsRow>
 );
 
