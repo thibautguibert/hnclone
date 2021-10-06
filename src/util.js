@@ -4,3 +4,5 @@ export const getNewsIndexes = (pageNumber) => {
 };
 
 export const getNewsNumber = (pageNumber, index) => (pageNumber - 1) * 20 + index + 1;
+
+export const getSource = (url) => url.replace('www.', '').split('/')[2];
