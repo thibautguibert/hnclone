@@ -8,6 +8,7 @@ const App = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [idList, setIdList] = useState([]);
   const [newsList, setNewsList] = useState([]);
+  const [refresh, setRefresh] = useState(false);
 
   const getTopNews = () => {
     const url = 'https://hacker-news.firebaseio.com/v0/topstories.json';
@@ -28,12 +29,15 @@ const App = () => {
     Promise.all(details).then((newsDetails) => setNewsList(newsDetails));
   };
 
-  useEffect(() => { getTopNews().then((list) => { getNewsDetails(list); }); }, []);
+  useEffect(() => {
+    getTopNews().then((list) => { getNewsDetails(list); });
+    setInterval(() => setRefresh(!refresh), 30000);
+  }, [refresh]);
   useEffect(() => { getNewsDetails(); }, [pageNumber]);
 
   return (
     <>
-      <Header />
+      <Header setRefresh={() => setRefresh(!refresh)} />
       <NewsList pageNumber={pageNumber} setPageNumber={setPageNumber} newsList={newsList} />
     </>
   );

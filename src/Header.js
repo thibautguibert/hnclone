@@ -27,19 +27,15 @@ const RefreshIcon = styled.img`
   }
 `;
 
-const HeaderComponent = ({ refresh }) => (
+const HeaderComponent = ({ setRefresh }) => (
   <Header>
     <Title>HackerNews</Title>
-    <RefreshIcon src={refreshIcon} alt="refresh" onClick={refresh} />
+    <RefreshIcon src={refreshIcon} alt="refresh" onClick={setRefresh} />
   </Header>
 );
 
 HeaderComponent.propTypes = {
-  refresh: PropTypes.func,
-};
-
-HeaderComponent.defaultProps = {
-  refresh() {},
+  setRefresh: PropTypes.func.isRequired,
 };
 
 export default HeaderComponent;
