@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import getNewsIndexes from './util';
+import { getNewsIndexes } from './util';
 import Header from './Header';
 import NewsList from './NewsList';
 

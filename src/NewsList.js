@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import shortid from 'shortid';
 import { Skeleton, ButtonGroup, Button } from '@mui/material';
+import { getNewsNumber } from './util';
+import NewsDetails from './NewsDetails';
 
 const NewsList = styled.main`
   display: flex;
@@ -42,7 +44,11 @@ const NewsListComponent = ({
   <NewsList>
     {newsList.length === 0 ? (
       <SkeletonNews />
-    ) : newsList.map((news) => <p key={news.id}>{news.title}</p>)}
+    ) : (
+      newsList.map((news, index) => (
+        <NewsDetails news={news} index={getNewsNumber(pageNumber, index)} key={news.id} />
+      ))
+    )}
     <ButtonGroup variant="text" size="small" color="inherit" style={{ padding: '1.5rem' }}>
       <Button
         style={pageNumber === 1 ? buttonDisabledStyle : buttonStyle}
